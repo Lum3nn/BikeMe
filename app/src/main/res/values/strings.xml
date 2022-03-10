@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BikeMe</string>
+    <string name="empty_note">Wszystkie pola muszą być wypełnione!</string>
+    <string name="something_went_wrong">Coś poszło nie tak… </string>
+    <string name="save">Zapisz</string>
+    <string name="cancel">Anuluj</string>
+    <string name="trip_date">Data wycieczki</string>
+    <string name="trip_distance">Dystans w km</string>
+    <string name="trip_name">Nazwa wycieczki</string>
+    <string name="trip_deleted">Wycieczka usunięta</string>
+    <string name="trip_undo">Cofnij</string>
 </resources>

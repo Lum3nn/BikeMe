@@ -6,14 +6,28 @@
 
     <fragment
         android:id="@+id/tripsListFragment"
-        android:name="com.lumen.bikeme.TripsListFragment"
+        android:name="com.lumen.bikeme.tripList.TripsListFragment"
         android:label="BikeMe">
         <action
             android:id="@+id/action_tripsListFragment_to_tripsFormFragment"
-            app:destination="@id/tripsFormFragment" />
+            app:destination="@id/tripsFormFragment"
+            app:popUpTo="@id/tripsListFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/tripsFormFragment"
-        android:name="com.lumen.bikeme.TripsFormFragment"
-        android:label="BikeMe" />
+        android:name="com.lumen.bikeme.tripForm.TripsFormFragment"
+        android:label="BikeMe" >
+        <action
+            android:id="@+id/action_tripsFormFragment_to_tripsListFragment"
+            app:destination="@id/tripsListFragment"
+            app:popUpTo="@id/tripsFormFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment2"
+        android:name="com.lumen.bikeme.maps.MapsFragment"
+        android:label="MapsFragment" />
 </navigation>
