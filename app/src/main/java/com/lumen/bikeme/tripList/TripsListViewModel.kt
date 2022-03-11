@@ -10,15 +10,11 @@ import com.lumen.bikeme.commons.toDate
 import com.lumen.bikeme.commons.toFormattedShortString
 import com.lumen.bikeme.commons.toShortDate
 import com.lumen.bikeme.commons.repository.TripRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TripsListViewModel @Inject constructor(private val tripRoomRepository: TripRepository)
-    : ViewModel() {
+class TripsListViewModel constructor(private val tripRoomRepository: TripRepository) : ViewModel() {
 
     private val _tripListUiState = MutableStateFlow<TripListUiState>(
         TripListUiState.Loading

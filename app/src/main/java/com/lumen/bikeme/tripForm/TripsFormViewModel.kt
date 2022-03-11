@@ -6,17 +6,13 @@ import com.lumen.bikeme.commons.FailReason
 import com.lumen.bikeme.commons.repository.TripRepository
 import com.lumen.bikeme.commons.toDate
 import com.lumen.bikeme.commons.model.TripItem
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TripsFormViewModel @Inject constructor(
+class TripsFormViewModel constructor(
     private val tripRoomRepository: TripRepository
-    )
-    : ViewModel() {
+) : ViewModel() {
 
     private val _tripFormUiState = MutableStateFlow<TripFormUiState>(
         TripFormUiState.Loading

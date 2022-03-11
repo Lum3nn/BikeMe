@@ -1,11 +1,8 @@
 package com.lumen.bikeme.commons.repository
 
 import com.lumen.bikeme.commons.model.TripItem
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class TripRoomRepository @Inject constructor(private val tripResponseDao: TripResponseDao) :
+class TripRoomRepository constructor(private val tripResponseDao: TripResponseDao) :
     TripRepository {
 
     override suspend fun listTrips(): List<TripItem> {

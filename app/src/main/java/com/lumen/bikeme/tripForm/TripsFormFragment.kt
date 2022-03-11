@@ -17,18 +17,17 @@ import androidx.navigation.fragment.findNavController
 import com.lumen.bikeme.commons.FailReason
 import com.lumen.bikeme.R
 import com.lumen.bikeme.tripForm.TripsFormViewModel.*
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-@AndroidEntryPoint
 class TripsFormFragment : Fragment() {
 
     private var _binding: TripsFormFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: TripsFormViewModel by viewModels()
+    private val viewModel: TripsFormViewModel by viewModel()
 
     private val myCalendar: Calendar = Calendar.getInstance()
     private val myFormat = "dd-MM-yyyy"

@@ -13,11 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lumen.bikeme.databinding.TripsListFragmentBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class TripsListFragment :
     Fragment(),
     TripListAdapter.OnTripDelete,
@@ -25,7 +24,7 @@ class TripsListFragment :
 
     private var _binding: TripsListFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: TripsListViewModel by viewModels()
+    private val viewModel: TripsListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
