@@ -1,20 +1,22 @@
 package com.lumen.bikeme.tripForm
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lumen.bikeme.FailReason
-import com.lumen.bikeme.repository.TripRepository
-import com.lumen.bikeme.repository.TripRoomRepository
-import com.lumen.bikeme.toDate
-import com.lumen.bikeme.tripList.TripItem
+import com.lumen.bikeme.commons.FailReason
+import com.lumen.bikeme.commons.repository.TripRepository
+import com.lumen.bikeme.commons.toDate
+import com.lumen.bikeme.commons.model.TripItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TripsFormViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository: TripRepository = TripRoomRepository(application)
+@HiltViewModel
+class TripsFormViewModel @Inject constructor(
+    private val tripRoomRepository: TripRepository
+    )
+    : ViewModel() {
 
     private val _tripFormUiState = MutableStateFlow<TripFormUiState>(
         TripFormUiState.Loading
@@ -32,7 +34,7 @@ class TripsFormViewModel(application: Application) : AndroidViewModel(applicatio
 
         viewModelScope.launch {
             try {
-                repository.insertTrip(TripItem(tripName, tripDistance, tripDate.toDate()))
+                tripRoomRepository.insertTrip(TripItem(tripName, tripDistance, tripDate.toDate()))
                 _tripFormUiState.value = TripFormUiState.Success
             } catch (e: Exception) {
                 _tripFormUiState.value = TripFormUiState.Fail(FailReason.FIREBASE)

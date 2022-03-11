@@ -1,4 +1,4 @@
-package com.lumen.bikeme
+package com.lumen.bikeme.commons
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

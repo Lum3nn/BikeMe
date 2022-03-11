@@ -1,7 +1,7 @@
-package com.lumen.bikeme.repository
+package com.lumen.bikeme.commons.repository
 
 import androidx.room.*
-import com.lumen.bikeme.tripList.TripItem
+import com.lumen.bikeme.commons.model.TripItem
 
 @Dao
 interface TripResponseDao {

@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.lumen.bikeme.*
+import com.lumen.bikeme.commons.model.TripItem
+import com.lumen.bikeme.commons.model.TripItemDate
+import com.lumen.bikeme.commons.model.TripItemList
+import com.lumen.bikeme.commons.toFormattedString
 import com.lumen.bikeme.databinding.TripDateItemBinding
 import com.lumen.bikeme.databinding.TripItemBinding
 import com.lumen.bikeme.databinding.TripLoadingItemBinding
-import com.lumen.bikeme.repository.DateNamesRepository
+import com.lumen.bikeme.commons.repository.DateNamesRepository
 import java.util.*
 
 class TripListAdapter(

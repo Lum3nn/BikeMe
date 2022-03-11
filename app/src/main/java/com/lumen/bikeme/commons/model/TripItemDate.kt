@@ -1,4 +1,4 @@
-package com.lumen.bikeme.tripList
+package com.lumen.bikeme.commons.model
 
 import java.util.*
 

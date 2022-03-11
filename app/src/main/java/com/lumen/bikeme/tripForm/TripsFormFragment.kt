@@ -14,14 +14,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.lumen.bikeme.FailReason
+import com.lumen.bikeme.commons.FailReason
 import com.lumen.bikeme.R
 import com.lumen.bikeme.tripForm.TripsFormViewModel.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class TripsFormFragment : Fragment() {
 
     private var _binding: TripsFormFragmentBinding? = null

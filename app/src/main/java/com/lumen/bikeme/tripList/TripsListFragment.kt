@@ -13,13 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lumen.bikeme.databinding.TripsListFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TripsListFragment :
     Fragment(),
     TripListAdapter.OnTripDelete,
     TripListAdapter.OnTrippAdd {
+
     private var _binding: TripsListFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: TripsListViewModel by viewModels()

@@ -1,6 +1,6 @@
-package com.lumen.bikeme.repository
+package com.lumen.bikeme.commons.repository
 
-import com.lumen.bikeme.tripList.TripItem
+import com.lumen.bikeme.commons.model.TripItem
 
 interface TripRepository {
 

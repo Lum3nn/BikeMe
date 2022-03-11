@@ -1,4 +1,4 @@
-package com.lumen.bikeme.repository
+package com.lumen.bikeme.commons.repository
 
 object DateNamesRepository {
 
