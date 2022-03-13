@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,6 +33,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
     buildFeatures {
         viewBinding true
@@ -72,6 +76,11 @@ dependencies {
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:2.40"
     kapt "com.google.dagger:hilt-android-compiler:2.40"
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     // Testing
     testImplementation 'junit:junit:4.+'

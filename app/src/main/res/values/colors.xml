@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#C3C3C3</color>
     <color name="swipe_delete">#F1A1A1</color>
+    <color name="notification">#A6FF3E</color>
 </resources>

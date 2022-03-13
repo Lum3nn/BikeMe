@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "412111345275",
+    "project_id": "bikeme-6e9e7",
+    "storage_bucket": "bikeme-6e9e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412111345275:android:f719ac98aa87ea7543f4de",
+        "android_client_info": {
+          "package_name": "com.lumen.bikeme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412111345275-o9ja1grj2rjdph0n76lucoamhdn4hnli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCD19Gb7CGqwWhXOa06257T3SR2HgNsLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412111345275-o9ja1grj2rjdph0n76lucoamhdn4hnli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
