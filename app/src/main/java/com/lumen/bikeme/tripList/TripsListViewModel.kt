@@ -2,14 +2,11 @@ package com.lumen.bikeme.tripList
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lumen.bikeme.commons.FailReason
+import com.lumen.bikeme.commons.*
 import com.lumen.bikeme.commons.model.TripItem
 import com.lumen.bikeme.commons.model.TripItemDate
 import com.lumen.bikeme.commons.model.TripItemList
-import com.lumen.bikeme.commons.toDate
-import com.lumen.bikeme.commons.toFormattedShortString
-import com.lumen.bikeme.commons.toShortDate
-import com.lumen.bikeme.commons.repository.TripRepository
+import com.lumen.bikeme.commons.repository.TripDataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TripsListViewModel @Inject constructor(private val tripRoomRepository: TripRepository)
-    : ViewModel() {
+class TripsListViewModel @Inject constructor(private val tripDataRepository: TripDataRepository) :
+    ViewModel() {
 
     private val _tripListUiState = MutableStateFlow<TripListUiState>(
         TripListUiState.Loading
@@ -34,7 +31,7 @@ class TripsListViewModel @Inject constructor(private val tripRoomRepository: Tri
 
         viewModelScope.launch {
             try {
-                val listTrip = tripRoomRepository.listTrips()
+                val listTrip = tripDataRepository.listTrips()
                 val formattedListTrip = createListTrip(listTrip)
                 _tripListUiState.value = TripListUiState.Success(formattedListTrip)
             } catch (e: Exception) {
@@ -65,13 +62,13 @@ class TripsListViewModel @Inject constructor(private val tripRoomRepository: Tri
         return finalTripItemList
     }
 
-    fun deleteTrip(tripId: Int) {
+    fun deleteTrip(tripId: String) {
         _tripListUiState.value = TripListUiState.Loading
 
         viewModelScope.launch {
             try {
-                tripRoomRepository.deleteSingleTrip(tripId)
-                val listTrip = tripRoomRepository.listTrips()
+                tripDataRepository.deleteSingleTrip(tripId)
+                val listTrip = tripDataRepository.listTrips()
                 val formattedListTrip = createListTrip(listTrip)
                 _tripListUiState.value = TripListUiState.Success(formattedListTrip)
             } catch (e: Exception) {
@@ -86,8 +83,8 @@ class TripsListViewModel @Inject constructor(private val tripRoomRepository: Tri
 
         viewModelScope.launch {
             try {
-                tripRoomRepository.insertTrip(TripItem(tripName, tripDistance, tripDate.toDate()))
-                val listTrip = tripRoomRepository.listTrips()
+                tripDataRepository.insertTrip(tripName, tripDistance, tripDate)
+                val listTrip = tripDataRepository.listTrips()
                 val formattedListTrip = createListTrip(listTrip)
                 _tripListUiState.value = TripListUiState.Success(formattedListTrip)
             } catch (e: Exception) {

@@ -1,5 +1,6 @@
 package com.lumen.bikeme.tripForm
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,7 @@ class TripsFormFragment : Fragment() {
         observeFlow()
     }
 
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     private fun observeFlow() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

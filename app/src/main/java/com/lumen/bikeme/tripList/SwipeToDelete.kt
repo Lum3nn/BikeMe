@@ -40,7 +40,12 @@ class SwipeToDelete(
             Snackbar.LENGTH_SHORT
         )
             .setAction(context.getString(R.string.trip_undo)) {
-                adapter.onTripAdd(holder.tripName, holder.tripDistance, holder.tripDate)
+                adapter.onTripAdd(
+                    holder.tripName,
+                    holder.tripDistance,
+                    holder.tripDate,
+                    holder.tripId
+                )
             }.show()
     }
 

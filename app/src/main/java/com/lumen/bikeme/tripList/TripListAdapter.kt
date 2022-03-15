@@ -48,21 +48,21 @@ class TripListAdapter(
         }
     }
 
-    fun deleteTrip(id: Int) {
+    fun deleteTrip(id: String) {
         onTripSwipeToDelete.onTripSwipeToDelete(id)
     }
 
 
-    fun onTripAdd(tripName: String, tripDistance: String, tripDate: String) {
-        onTripUndoAdd.onTripAdd(tripName, tripDistance, tripDate)
+    fun onTripAdd(tripName: String, tripDistance: String, tripDate: String, tripId: String) {
+        onTripUndoAdd.onTripAdd(tripName, tripDistance, tripDate, tripId)
     }
 
     interface OnTrippAdd {
-        fun onTripAdd(tripName: String, tripDistance: String, tripDate: String)
+        fun onTripAdd(tripName: String, tripDistance: String, tripDate: String, tripId: String)
     }
 
     interface OnTripDelete {
-        fun onTripSwipeToDelete(tripId: Int)
+        fun onTripSwipeToDelete(tripId: String)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -129,7 +129,7 @@ class TripListAdapter(
         private val binding: TripItemBinding,
     ) : TripsListItemViewHolder(binding.root) {
 
-        var tripId: Int = 0
+        var tripId: String = ""
         var tripName: String = ""
         var tripDistance: String = ""
         var tripDate: String = ""

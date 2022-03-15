@@ -1,5 +1,6 @@
 package com.lumen.bikeme.tripList
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +58,7 @@ class TripsListFragment :
         findNavController().navigate(action)
     }
 
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     private fun observeFlow(adapter: TripListAdapter) {
 
         lifecycleScope.launch {
@@ -74,11 +76,16 @@ class TripsListFragment :
         }
     }
 
-    override fun onTripSwipeToDelete(tripId: Int) {
+    override fun onTripSwipeToDelete(tripId: String) {
         viewModel.deleteTrip(tripId)
     }
 
-    override fun onTripAdd(tripName: String, tripDistance: String, tripDate: String) {
+    override fun onTripAdd(
+        tripName: String,
+        tripDistance: String,
+        tripDate: String,
+        tripId: String
+    ) {
         viewModel.addUndoTrip(tripName, tripDistance, tripDate)
     }
 

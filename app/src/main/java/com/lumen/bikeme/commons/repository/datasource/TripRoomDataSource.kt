@@ -1,12 +1,14 @@
-package com.lumen.bikeme.commons.repository
+package com.lumen.bikeme.commons.repository.datasource
 
 import com.lumen.bikeme.commons.model.TripItem
+import com.lumen.bikeme.commons.repository.TripResponseDao
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TripRoomRepository @Inject constructor(private val tripResponseDao: TripResponseDao) :
-    TripRepository {
+class TripRoomDataSource @Inject constructor(
+    private val tripResponseDao: TripResponseDao
+) : TripDataSource {
 
     override suspend fun listTrips(): List<TripItem> {
         return tripResponseDao.fetchTrips()
@@ -16,11 +18,7 @@ class TripRoomRepository @Inject constructor(private val tripResponseDao: TripRe
         tripResponseDao.insertTrip(tripItem)
     }
 
-    override suspend fun deleteAllTrips() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun deleteSingleTrip(id: Int) {
+    override suspend fun deleteSingleTrip(id: String) {
         tripResponseDao.deleteTrip(id)
     }
 }

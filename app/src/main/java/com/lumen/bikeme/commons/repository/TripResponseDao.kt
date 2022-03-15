@@ -19,5 +19,5 @@ interface TripResponseDao {
     suspend fun deleteAllTrips()
 
     @Query("DELETE FROM trip WHERE id = :id ")
-    suspend fun deleteTrip(id : Int)
+    suspend fun deleteTrip(id: String)
 }

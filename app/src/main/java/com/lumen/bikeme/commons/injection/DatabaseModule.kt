@@ -19,17 +19,25 @@ package com.lumen.bikeme.commons.injection
 import android.content.Context
 import androidx.room.Room
 import com.lumen.bikeme.commons.repository.AppDatabase
+import com.lumen.bikeme.commons.repository.FirebaseService
 import com.lumen.bikeme.commons.repository.TripResponseDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
+
+    private const val BASE_URL = "https://bikeme-6e9e7-default-rtdb.firebaseio.com/"
 
     @Provides
     @Singleton
@@ -47,4 +55,21 @@ object DatabaseModule {
         return database.tripListDao()
     }
 
+    @Singleton
+    @Provides
+    fun provideFirebaseClient(): FirebaseService {
+
+        val logging = HttpLoggingInterceptor { message -> println("KITKA $message") }
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
+        return Retrofit.Builder()
+            .client(httpClient)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(FirebaseService::class.java)
+    }
 }
