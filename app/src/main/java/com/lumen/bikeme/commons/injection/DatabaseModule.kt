@@ -18,9 +18,11 @@ package com.lumen.bikeme.commons.injection
 
 import android.content.Context
 import androidx.room.Room
+import com.lumen.bikeme.commons.network.AccessTokenInterceptor
 import com.lumen.bikeme.commons.repository.AppDatabase
 import com.lumen.bikeme.commons.repository.FirebaseService
 import com.lumen.bikeme.commons.repository.TripResponseDao
+import com.lumen.bikeme.commons.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,13 +59,19 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideFirebaseClient(): FirebaseService {
+    fun provideFirebaseClient(userService: UserService): FirebaseService {
 
         val logging = HttpLoggingInterceptor { message -> println("KITKA $message") }
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
+
+        val tokenInterceptor = AccessTokenInterceptor(userService)
+
         val httpClient = OkHttpClient.Builder()
+            .addInterceptor(tokenInterceptor)
             .addInterceptor(logging)
             .build()
+
+
 
         return Retrofit.Builder()
             .client(httpClient)

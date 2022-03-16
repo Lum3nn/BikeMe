@@ -4,12 +4,19 @@ import com.lumen.bikeme.commons.model.TripItem
 import retrofit2.http.*
 
 interface FirebaseService {
-    @GET("Trips.json?")
-    suspend fun getTrips(): Map<String, TripItem>?
+    @GET("Trips/{userId}.json")
+    suspend fun getTrips(@Path("userId") userId: String): Map<String, TripItem>?
 
-    @PUT("Trips/{generatedId}.json")
-    suspend fun saveTrip(@Body trip: TripItem, @Path("generatedId") id: String)
+    @PUT("Trips/{userId}/{generatedId}.json")
+    suspend fun saveTrip(
+        @Body trip: TripItem,
+        @Path("generatedId") id: String,
+        @Path("userId") userId: String
+    )
 
-    @DELETE("Trips/{generatedId}.json")
-    suspend fun deleteSingleTrip(@Path("generatedId") id: String)
+    @DELETE("Trips/{userId}/{generatedId}.json")
+    suspend fun deleteSingleTrip(
+        @Path("generatedId") id: String,
+        @Path("userId") userId: String
+    )
 }

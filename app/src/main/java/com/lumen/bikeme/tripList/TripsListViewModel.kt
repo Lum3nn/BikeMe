@@ -2,11 +2,14 @@ package com.lumen.bikeme.tripList
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lumen.bikeme.commons.*
+import com.lumen.bikeme.commons.FailReason
 import com.lumen.bikeme.commons.model.TripItem
 import com.lumen.bikeme.commons.model.TripItemDate
 import com.lumen.bikeme.commons.model.TripItemList
 import com.lumen.bikeme.commons.repository.TripDataRepository
+import com.lumen.bikeme.commons.service.FirebaseUserService
+import com.lumen.bikeme.commons.toFormattedShortString
+import com.lumen.bikeme.commons.toShortDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,6 +27,14 @@ class TripsListViewModel @Inject constructor(private val tripDataRepository: Tri
 
     init {
         loadData()
+        viewModelScope.launch {
+            val id = FirebaseUserService().getUserId()
+            //CBQLoMjFtAcniOPClJrBi6Ueg253
+            println("KITKA INIT ANONYMOUS USER ID $id")
+            val token = FirebaseUserService().getAccessToken()
+            //CBQLoMjFtAcniOPClJrBi6Ueg253
+            println("KITKA INIT ANONYMOUS USER TOKEN $token")
+        }
     }
 
     private fun loadData() {

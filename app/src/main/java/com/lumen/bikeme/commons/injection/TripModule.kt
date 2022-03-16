@@ -1,9 +1,13 @@
 package com.lumen.bikeme.commons.injection
 
-import com.lumen.bikeme.commons.repository.*
+import com.lumen.bikeme.commons.repository.FirebaseService
+import com.lumen.bikeme.commons.repository.TripDataRepository
+import com.lumen.bikeme.commons.repository.TripRepository
+import com.lumen.bikeme.commons.repository.TripResponseDao
 import com.lumen.bikeme.commons.repository.datasource.FirebaseDataSource
 import com.lumen.bikeme.commons.repository.datasource.TripDataSource
 import com.lumen.bikeme.commons.repository.datasource.TripRoomDataSource
+import com.lumen.bikeme.commons.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,8 +37,11 @@ object TripModule {
     @Singleton
     @RemoteDataSource
     @Provides
-    fun provideRemoteDataSource(firebaseService: FirebaseService): TripDataSource {
-        return FirebaseDataSource(firebaseService)
+    fun provideRemoteDataSource(
+        firebaseService: FirebaseService,
+        firebaseUserService: UserService
+    ): TripDataSource {
+        return FirebaseDataSource(firebaseService, firebaseUserService)
     }
 
     @Provides
