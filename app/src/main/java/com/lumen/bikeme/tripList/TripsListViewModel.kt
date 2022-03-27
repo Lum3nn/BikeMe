@@ -7,7 +7,6 @@ import com.lumen.bikeme.commons.model.TripItem
 import com.lumen.bikeme.commons.model.TripItemDate
 import com.lumen.bikeme.commons.model.TripItemList
 import com.lumen.bikeme.commons.repository.TripDataRepository
-import com.lumen.bikeme.commons.service.FirebaseUserService
 import com.lumen.bikeme.commons.toFormattedShortString
 import com.lumen.bikeme.commons.toShortDate
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,21 +19,11 @@ import javax.inject.Inject
 class TripsListViewModel @Inject constructor(private val tripDataRepository: TripDataRepository) :
     ViewModel() {
 
-    private val _tripListUiState = MutableStateFlow<TripListUiState>(
-        TripListUiState.Loading
-    )
+    private val _tripListUiState = MutableStateFlow<TripListUiState>(TripListUiState.Loading)
     val tripListUiState: StateFlow<TripListUiState> = _tripListUiState
 
     init {
         loadData()
-        viewModelScope.launch {
-            val id = FirebaseUserService().getUserId()
-            //CBQLoMjFtAcniOPClJrBi6Ueg253
-            println("KITKA INIT ANONYMOUS USER ID $id")
-            val token = FirebaseUserService().getAccessToken()
-            //CBQLoMjFtAcniOPClJrBi6Ueg253
-            println("KITKA INIT ANONYMOUS USER TOKEN $token")
-        }
     }
 
     private fun loadData() {

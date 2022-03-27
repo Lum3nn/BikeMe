@@ -1,4 +1,4 @@
-package com.lumen.bikeme.tripList
+package com.lumen.bikeme.tripList.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,17 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lumen.bikeme.commons.model.TripItem
 import com.lumen.bikeme.commons.model.TripItemDate
 import com.lumen.bikeme.commons.model.TripItemList
+import com.lumen.bikeme.commons.repository.DateNamesRepository
 import com.lumen.bikeme.commons.toFormattedString
 import com.lumen.bikeme.databinding.TripDateItemBinding
 import com.lumen.bikeme.databinding.TripItemBinding
 import com.lumen.bikeme.databinding.TripLoadingItemBinding
-import com.lumen.bikeme.commons.repository.DateNamesRepository
 import java.util.*
 
 class TripListAdapter(
     private val onTripSwipeToDelete: OnTripDelete,
     private val onTripUndoAdd: OnTrippAdd,
-    ) : ListAdapter<TripItemList, TripListAdapter.TripsListItemViewHolder>(DIFF) {
+) : ListAdapter<TripItemList, TripListAdapter.TripsListItemViewHolder>(DIFF) {
 
     companion object {
 
@@ -52,17 +52,8 @@ class TripListAdapter(
         onTripSwipeToDelete.onTripSwipeToDelete(id)
     }
 
-
     fun onTripAdd(tripName: String, tripDistance: String, tripDate: String, tripId: String) {
         onTripUndoAdd.onTripAdd(tripName, tripDistance, tripDate, tripId)
-    }
-
-    interface OnTrippAdd {
-        fun onTripAdd(tripName: String, tripDistance: String, tripDate: String, tripId: String)
-    }
-
-    interface OnTripDelete {
-        fun onTripSwipeToDelete(tripId: String)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -94,6 +85,14 @@ class TripListAdapter(
     override fun onBindViewHolder(holder: TripsListItemViewHolder, position: Int) {
         val data = getItem(position)
         holder.bind(data)
+    }
+
+    interface OnTrippAdd {
+        fun onTripAdd(tripName: String, tripDistance: String, tripDate: String, tripId: String)
+    }
+
+    interface OnTripDelete {
+        fun onTripSwipeToDelete(tripId: String)
     }
 
     abstract class TripsListItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,4 +1,4 @@
-package com.lumen.bikeme.commons.repository.datasource
+package com.lumen.bikeme.commons.repository.datasource.trip
 
 import com.lumen.bikeme.commons.model.TripItem
 

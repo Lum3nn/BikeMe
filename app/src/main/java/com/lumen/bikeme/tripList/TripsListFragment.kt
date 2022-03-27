@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,14 +14,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lumen.bikeme.commons.model.TripItemList
 import com.lumen.bikeme.databinding.TripsListFragmentBinding
+import com.lumen.bikeme.tripList.adapter.SwipeToDelete
+import com.lumen.bikeme.tripList.adapter.TripListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TripsListFragment :
-    Fragment(),
+class TripsListFragment : Fragment(),
     TripListAdapter.OnTripDelete,
     TripListAdapter.OnTrippAdd {
 
@@ -44,12 +47,18 @@ class TripsListFragment :
             navigateToFormList()
         }
 
+        val adapter = setupAdapter()
+        observeFlow(adapter)
+    }
+
+    private fun setupAdapter(): TripListAdapter {
         val adapter = TripListAdapter(this, this)
         binding.tripsRecycler.layoutManager = LinearLayoutManager(context)
         binding.tripsRecycler.adapter = adapter
         val itemTouchHelper = ItemTouchHelper(SwipeToDelete(adapter, requireContext()))
         itemTouchHelper.attachToRecyclerView(binding.tripsRecycler)
-        observeFlow(adapter)
+
+        return adapter
     }
 
     private fun navigateToFormList() {
@@ -60,7 +69,6 @@ class TripsListFragment :
 
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     private fun observeFlow(adapter: TripListAdapter) {
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.tripListUiState.collect { tripListUiState ->
@@ -68,12 +76,17 @@ class TripsListFragment :
                         is TripsListViewModel.TripListUiState.Fail -> {}
                         TripsListViewModel.TripListUiState.Loading -> {}
                         is TripsListViewModel.TripListUiState.Success -> {
+                            toggleEmptyView(tripListUiState.tripItemList)
                             adapter.submitList(tripListUiState.tripItemList)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun toggleEmptyView(tripItemList: List<TripItemList>) {
+        binding.emptyView.isVisible = tripItemList.isEmpty()
     }
 
     override fun onTripSwipeToDelete(tripId: String) {

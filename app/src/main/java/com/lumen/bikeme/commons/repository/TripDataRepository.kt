@@ -4,7 +4,7 @@ import com.lumen.bikeme.commons.PushIdGenerator
 import com.lumen.bikeme.commons.injection.LocalDataSource
 import com.lumen.bikeme.commons.injection.RemoteDataSource
 import com.lumen.bikeme.commons.model.TripItem
-import com.lumen.bikeme.commons.repository.datasource.TripDataSource
+import com.lumen.bikeme.commons.repository.datasource.trip.TripDataSource
 import com.lumen.bikeme.commons.toDate
 import java.util.*
 import javax.inject.Inject
@@ -44,7 +44,6 @@ class TripDataRepository @Inject constructor(
     }
 
     override suspend fun insertTrip(tripName: String, tripDistance: String, tripDate: String) {
-
         val generatedId = PushIdGenerator.generatePushChildName(Date().time)
         if (tripName.isEmpty() || tripDistance.isEmpty() || tripDate.isEmpty()) {
             throw TripRepository.EmptyFieldException()

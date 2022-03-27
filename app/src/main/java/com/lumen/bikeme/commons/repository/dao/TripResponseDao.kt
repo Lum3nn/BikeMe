@@ -1,6 +1,9 @@
-package com.lumen.bikeme.commons.repository
+package com.lumen.bikeme.commons.repository.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.lumen.bikeme.commons.model.TripItem
 
 @Dao

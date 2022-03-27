@@ -13,17 +13,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TripsFormViewModel @Inject constructor(
-    private val tripDataRepository: TripDataRepository
-)
-    : ViewModel() {
+    private val tripDataRepository: TripDataRepository,
+) : ViewModel() {
 
-    private val _tripFormUiState = MutableStateFlow<TripFormUiState>(
-        TripFormUiState.Loading
-    )
+    private val _tripFormUiState = MutableStateFlow<TripFormUiState>(TripFormUiState.Loading)
     val tripFormUiState: StateFlow<TripFormUiState> = _tripFormUiState
 
     fun insertTrip(tripName: String, tripDistance: String, tripDate: String) {
-
         _tripFormUiState.value = TripFormUiState.Loading
         viewModelScope.launch {
             try {

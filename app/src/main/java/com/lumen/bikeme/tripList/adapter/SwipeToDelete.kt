@@ -1,4 +1,4 @@
-package com.lumen.bikeme.tripList
+package com.lumen.bikeme.tripList.adapter
 
 import android.content.Context
 import android.graphics.Canvas

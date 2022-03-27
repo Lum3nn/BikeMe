@@ -14,10 +14,10 @@ android {
     defaultConfig {
         applicationId "com.lumen.bikeme"
         minSdk 21
+        minSdkVersion 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -86,6 +86,12 @@ dependencies {
 
     //OKHttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    //MapBox
+    implementation 'com.mapbox.maps:android:10.3.0'
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
     // Testing
     testImplementation 'junit:junit:4.+'

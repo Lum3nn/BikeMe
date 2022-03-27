@@ -19,9 +19,10 @@ package com.lumen.bikeme.commons.injection
 import android.content.Context
 import androidx.room.Room
 import com.lumen.bikeme.commons.network.AccessTokenInterceptor
-import com.lumen.bikeme.commons.repository.AppDatabase
-import com.lumen.bikeme.commons.repository.FirebaseService
-import com.lumen.bikeme.commons.repository.TripResponseDao
+import com.lumen.bikeme.commons.network.FirebaseService
+import com.lumen.bikeme.commons.repository.dao.MapResponseDao
+import com.lumen.bikeme.commons.repository.dao.TripResponseDao
+import com.lumen.bikeme.commons.repository.database.AppDatabase
 import com.lumen.bikeme.commons.service.UserService
 import dagger.Module
 import dagger.Provides
@@ -33,7 +34,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -59,6 +59,12 @@ object DatabaseModule {
 
     @Singleton
     @Provides
+    fun provideMapDao(database: AppDatabase): MapResponseDao {
+        return database.mapDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideFirebaseClient(userService: UserService): FirebaseService {
 
         val logging = HttpLoggingInterceptor { message -> println("KITKA $message") }
@@ -70,8 +76,6 @@ object DatabaseModule {
             .addInterceptor(tokenInterceptor)
             .addInterceptor(logging)
             .build()
-
-
 
         return Retrofit.Builder()
             .client(httpClient)

@@ -1,23 +1,23 @@
 package com.lumen.bikeme.tripForm
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.lumen.bikeme.databinding.TripsFormFragmentBinding
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.lumen.bikeme.commons.FailReason
 import com.lumen.bikeme.R
-import com.lumen.bikeme.tripForm.TripsFormViewModel.*
+import com.lumen.bikeme.commons.FailReason
+import com.lumen.bikeme.databinding.TripsFormFragmentBinding
+import com.lumen.bikeme.tripForm.TripsFormViewModel.TripFormUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -34,7 +34,6 @@ class TripsFormFragment : Fragment() {
     private val myCalendar: Calendar = Calendar.getInstance()
     private val myFormat = "dd-MM-yyyy"
     private val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +58,6 @@ class TripsFormFragment : Fragment() {
         binding.cancelTripFormBtn.setOnClickListener {
             viewModel.cancelAddingTrip()
         }
-
         observeFlow()
     }
 
@@ -89,7 +87,6 @@ class TripsFormFragment : Fragment() {
             FailReason.EMPTY_NOTE -> R.string.empty_note
             FailReason.FIREBASE -> R.string.something_went_wrong
         }
-
         Toast.makeText(context, errorText, Toast.LENGTH_SHORT).show()
     }
 

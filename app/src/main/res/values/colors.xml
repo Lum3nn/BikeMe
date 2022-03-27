@@ -5,9 +5,11 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="teal_800">#033A3A</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#C3C3C3</color>
     <color name="swipe_delete">#F1A1A1</color>
     <color name="notification">#A6FF3E</color>
+    <color name="green">#31EF70</color>
 </resources>

@@ -9,5 +9,9 @@
     <string name="trip_name">Nazwa wycieczki</string>
     <string name="trip_deleted">Wycieczka usunięta</string>
     <string name="trip_undo">Cofnij</string>
+    <string name="map_visited_legend_text">Odwiedzone</string>
+    <string name="map_not_visited_legend_text">Do odwiedzenia</string>
     <string name="default_notification_channel_id">1234</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoibHVtM24iLCJhIjoiY2wwdXRjdmIzMG5uYzNkbjEycThwN3R1aSJ9.cMoOY0yGdOI_6eMqFPzWWw</string>
+    <string name="no_trips_text">Brak wycieczek do wyswietlenia</string>
 </resources>

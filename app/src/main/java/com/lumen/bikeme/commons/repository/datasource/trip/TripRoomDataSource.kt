@@ -1,7 +1,7 @@
-package com.lumen.bikeme.commons.repository.datasource
+package com.lumen.bikeme.commons.repository.datasource.trip
 
 import com.lumen.bikeme.commons.model.TripItem
-import com.lumen.bikeme.commons.repository.TripResponseDao
+import com.lumen.bikeme.commons.repository.dao.TripResponseDao
 import javax.inject.Inject
 import javax.inject.Singleton
 

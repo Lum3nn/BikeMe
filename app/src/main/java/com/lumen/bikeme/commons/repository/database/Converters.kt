@@ -1,4 +1,4 @@
-package com.lumen.bikeme.commons
+package com.lumen.bikeme.commons.repository.database
 
 import androidx.room.TypeConverter
 import java.util.*

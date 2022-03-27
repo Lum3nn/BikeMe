@@ -27,7 +27,7 @@ class FirebaseUserService @Inject constructor() : UserService {
 
     override suspend fun getAccessToken(): String {
         val user = getUser()
-        val tokenResult = user.getIdToken(true).await()
+        val tokenResult = user.getIdToken(false).await()
         return tokenResult.token ?: throw UserService.TokenException()
     }
 }

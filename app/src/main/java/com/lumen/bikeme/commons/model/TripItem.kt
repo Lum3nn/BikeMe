@@ -11,5 +11,4 @@ data class TripItem(
     @ColumnInfo(name = "distance") val distance: String,
     @ColumnInfo(name = "date") val date: Date,
     @PrimaryKey val id: String,
-//    @PrimaryKey(autoGenerate = true) val roomId: Int = 0,
 ) : TripItemList
