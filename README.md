@@ -13,3 +13,8 @@ Wykorzystane biblioteki:
 - Firebase Realtime Database z komunikacją REST
 - Firebase Notifications
 - MapBox
+
+Uwagi:
+Aby zbudować aplikację niezbędny jest własny indywidualny klucz do map: 
+
+https://docs.mapbox.com/android/navigation/guides/get-started/install/
